@@ -4,10 +4,10 @@ package entidades;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Usuario {
-    private String nome;
-    private int id;
-    private List<Livro> livrosEmprestados;
+public abstract class Usuario {
+    protected String nome;
+    protected int id;
+    protected List<Livro> livrosEmprestados;
 
     
 

@@ -3,10 +3,9 @@ import java.io.IOException;
 import java.util.Scanner;
 import repositorio.BibliotecaRepositorio;
 import entidades.Livro;
-import entidades.Usuario;
 import entidades.Biblioteca;
 
-public class Main implements InterfaceMain{
+public class Main {
     static Scanner scanner = new Scanner(System.in);
     static BibliotecaRepositorio biblioteca = new BibliotecaRepositorio();
     
@@ -200,7 +199,13 @@ public class Main implements InterfaceMain{
                         break;
                     case 6:
                         principal();
+                    default:
+                        scanner.nextLine();
+                        System.out.println("Opção inválida. Tente novamente.");
+                        Thread.sleep(2000);
+                        principalLivros();
                 }
+
             } catch (Exception e) {
                 scanner.nextLine();
                 System.out.println("Opção inválida. Tente novamente.");
@@ -227,9 +232,9 @@ public class Main implements InterfaceMain{
             String tipoLivro = scanner.nextLine().toUpperCase();
 
             if (tipoLivro.equals("F")) {
-                biblioteca.adicionarLivro(new LivroFisico(titulo, autor, ISBN));
+                biblioteca.adicionarLivro(new LivroFisicoServico(titulo, autor, ISBN));
             } else if (tipoLivro.equals("D")) {
-                biblioteca.adicionarLivro(new LivroDigital(titulo, autor, ISBN));
+                biblioteca.adicionarLivro(new LivroDigitalServico(titulo, autor, ISBN));
             } else {
                 System.out.println("Tipo de livro inválido.");
             }
@@ -349,7 +354,7 @@ public class Main implements InterfaceMain{
             System.out.print("Digite o ID do usuário: ");
             int id = scanner.nextInt();
 
-            biblioteca.registrarUsuario(new Usuario(nome, id));
+            biblioteca.registrarUsuario(new UsuarioServico(nome, id));
         } catch (Exception e) {
             scanner.nextLine();
             System.out.println("Valor inválido");

@@ -5,7 +5,7 @@ import java.util.List;
 
 import servico.UsuarioServico;
 
-public class Biblioteca {
+public abstract class Biblioteca {
     protected List<Livro> livros;
     protected List<UsuarioServico> usuarios;
 
@@ -29,5 +29,40 @@ public class Biblioteca {
     public void setUsuarios(List<UsuarioServico> usuarios) {
         this.usuarios = usuarios;
     }
+    public void adicionarLivro(Livro livro) {
+        
     }
+
+    public void removerLivro(Livro livro) {
+    
+    }
+
+    public void registrarUsuario(UsuarioServico usuario) throws InterruptedException {
+        
+    }
+
+    
+    
+    public void removerUsuario(UsuarioServico usuario) {
+        
+    }
+    
+    public void emprestarLivro(UsuarioServico usuario, Livro livro) {
+        
+    }
+
+    public void verUsuarios() {
+    
+}
+
+    public void verLivros() {
+        
+    }
+
+    public void devolverLivro(Livro livro) {
+        
+    }
+}
+
+    
 

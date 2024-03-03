@@ -5,12 +5,12 @@ import servico.UsuarioServico;
 
 public class BibliotecaRepositorio extends Biblioteca {
 
-
+    @Override
     public void adicionarLivro(Livro livro) {
         livros.add(livro);
         System.out.println("Livro adicionado à biblioteca: " + livro.getTitulo());
     }
-
+    @Override
     public void removerLivro(Livro livro) {
         if (livro.isDisponivel()) {
             livros.remove(livro);
@@ -19,7 +19,7 @@ public class BibliotecaRepositorio extends Biblioteca {
             System.out.println("Não é possível remover o livro, pois está emprestado.");
         }
     }
-
+    @Override
     public void registrarUsuario(UsuarioServico usuario) throws InterruptedException {
         usuarios.add(usuario);
         System.out.println("Usuário registrado na biblioteca: " + usuario.getNome());
@@ -27,7 +27,7 @@ public class BibliotecaRepositorio extends Biblioteca {
     }
 
     
-    
+    @Override
     public void removerUsuario(UsuarioServico usuario) {
         boolean possuiLivrosEmprestados = false;
         for (Livro livro : usuario.getLivrosEmprestados()) {
@@ -44,7 +44,7 @@ public class BibliotecaRepositorio extends Biblioteca {
             System.out.println("Não é possível remover o usuário, pois ele tem livros emprestados.");
         }
     }
-    
+    @Override
     public void emprestarLivro(UsuarioServico usuario, Livro livro) {
         if (livro.isDisponivel()) {
             livro.setDisponivel(false);
@@ -54,14 +54,14 @@ public class BibliotecaRepositorio extends Biblioteca {
             System.out.println("O livro não está disponível para empréstimo.");
         }
     }
-
+    @Override
     public void verUsuarios() {
     System.out.println("  _Lista de usuários_ \n");
     for (UsuarioServico usuario : usuarios) {
         System.out.println("Nome: " + usuario.getNome() + ", ID: " + usuario.getId());
     }
 }
-
+@Override
     public void verLivros() {
         System.out.println("  _Lista de livros na biblioteca_");
         for (Livro livro : livros) {
@@ -73,7 +73,7 @@ public class BibliotecaRepositorio extends Biblioteca {
             }
         }
     }
-
+    @Override
     public void devolverLivro(Livro livro) {
         if (!livro.isDisponivel()) {
             livro.setDisponivel(true);

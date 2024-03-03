@@ -1,12 +1,14 @@
 package servico;
 
 import entidades.Livro;
+import interfaces.ILivro;
 
-class LivroDigital extends Livro {
-    public LivroDigital(String titulo, String autor, int ISBN) {
+class LivroDigitalServico extends Livro implements ILivro{
+    public LivroDigitalServico(String titulo, String autor, int ISBN) {
         super(titulo, autor, ISBN);
     }
 
+    @Override
     public void emprestar() {
         if (isDisponivel()) {
             setDisponivel(false);

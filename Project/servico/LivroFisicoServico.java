@@ -2,10 +2,10 @@ package servico;
 
 import entidades.Livro;
 
-class LivroFisico extends Livro {
+class LivroFisicoServico extends Livro {
     private boolean emBomEstado;
 
-    public LivroFisico(String titulo, String autor, int ISBN) {
+    public LivroFisicoServico(String titulo, String autor, int ISBN) {
         super(titulo, autor, ISBN);
         this.emBomEstado = true;
     }
@@ -18,6 +18,7 @@ class LivroFisico extends Livro {
         this.emBomEstado = emBomEstado;
     }
 
+    @Override
     public void emprestar() {
         if (isDisponivel() && isEmBomEstado()) {
             setDisponivel(false);
