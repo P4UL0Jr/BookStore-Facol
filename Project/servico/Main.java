@@ -1,11 +1,17 @@
+package servico;
 import java.io.IOException;
 import java.util.Scanner;
+import repositorio.BibliotecaRepositorio;
+import entidades.Livro;
+import entidades.Usuario;
+import entidades.Biblioteca;
 
-public class Main {
+public class Main implements InterfaceMain{
     static Scanner scanner = new Scanner(System.in);
-    static Biblioteca biblioteca = new Biblioteca();
+    static BibliotecaRepositorio biblioteca = new BibliotecaRepositorio();
+    
 
-//limpar a linha de comando (apenas para manter a organização)
+    //limpar a linha de comando (apenas para manter a organização)
     public static void limpeza(){
         String os = System.getProperty("os.name").toLowerCase();
 
@@ -275,7 +281,7 @@ public class Main {
             int idUsuario = scanner.nextInt();
         
             Livro livroEmprestar = null;
-            Usuario usuario = null;
+            UsuarioServico usuario = null;
             for (Livro livro : biblioteca.getLivros()) {
                 if (livro.getISBN() == ISBN) { 
                     livroEmprestar = livro;
@@ -283,7 +289,7 @@ public class Main {
                 }
             }
         
-            for (Usuario user : biblioteca.getUsuarios()) {
+            for (UsuarioServico user : biblioteca.getUsuarios()) {
                 if (user.getId() == idUsuario) {
                     usuario = user;
                     break;
@@ -291,7 +297,7 @@ public class Main {
             }
         
             if (livroEmprestar != null && usuario != null) {
-                biblioteca.emprestarLivro(usuario, livroEmprestar);
+               biblioteca.emprestarLivro(usuario, livroEmprestar);
             } else {
                 System.out.println("Livro ou usuário não encontrado.");
             }
@@ -358,8 +364,8 @@ public class Main {
         System.out.print("Digite o ID do usuário que deseja remover: ");
         try {
             int idUsuario = scanner.nextInt();
-            Usuario usuarioRemover = null;
-            for (Usuario usuario : biblioteca.getUsuarios()) {
+            UsuarioServico usuarioRemover = null;
+            for (UsuarioServico usuario : biblioteca.getUsuarios()) {
                 if (usuario.getId() == idUsuario) {
                     usuarioRemover = usuario;
                     break;

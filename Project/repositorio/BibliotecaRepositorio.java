@@ -1,31 +1,10 @@
-import java.util.ArrayList;
-import java.util.List;
+package repositorio;
+import entidades.Biblioteca;
+import entidades.Livro;
+import servico.UsuarioServico;
 
+public class BibliotecaRepositorio extends Biblioteca {
 
-class Biblioteca {
-    private List<Livro> livros;
-    private List<Usuario> usuarios;
-
-    public Biblioteca() {
-        this.livros = new ArrayList<>();
-        this.usuarios = new ArrayList<>();
-    }
-
-    public List<Livro> getLivros() {
-        return livros;
-    }
-
-    public void setLivros(List<Livro> livros) {
-        this.livros = livros;
-    }
-
-    public List<Usuario> getUsuarios() {
-        return usuarios;
-    }
-
-    public void setUsuarios(List<Usuario> usuarios) {
-        this.usuarios = usuarios;
-    }
 
     public void adicionarLivro(Livro livro) {
         livros.add(livro);
@@ -41,13 +20,32 @@ class Biblioteca {
         }
     }
 
-    public void registrarUsuario(Usuario usuario) throws InterruptedException {
+    public void registrarUsuario(UsuarioServico usuario) throws InterruptedException {
         usuarios.add(usuario);
         System.out.println("Usuário registrado na biblioteca: " + usuario.getNome());
         Thread.sleep(2000);
     }
 
-    public void emprestarLivro(Usuario usuario, Livro livro) {
+    
+    
+    public void removerUsuario(UsuarioServico usuario) {
+        boolean possuiLivrosEmprestados = false;
+        for (Livro livro : usuario.getLivrosEmprestados()) {
+            if (!livro.isDisponivel()) {
+                possuiLivrosEmprestados = true;
+                break;
+            }
+        }
+    
+        if (!possuiLivrosEmprestados) {
+            usuarios.remove(usuario);
+            System.out.println("Usuário removido da biblioteca: " + usuario.getNome());
+        } else {
+            System.out.println("Não é possível remover o usuário, pois ele tem livros emprestados.");
+        }
+    }
+    
+    public void emprestarLivro(UsuarioServico usuario, Livro livro) {
         if (livro.isDisponivel()) {
             livro.setDisponivel(false);
             livro.setUsuarioEmprestado(usuario);
@@ -59,7 +57,7 @@ class Biblioteca {
 
     public void verUsuarios() {
     System.out.println("  _Lista de usuários_ \n");
-    for (Usuario usuario : usuarios) {
+    for (UsuarioServico usuario : usuarios) {
         System.out.println("Nome: " + usuario.getNome() + ", ID: " + usuario.getId());
     }
 }
@@ -85,21 +83,6 @@ class Biblioteca {
             System.out.println("O livro não está emprestado.");
         }
     }
-    
-    public void removerUsuario(Usuario usuario) {
-        boolean possuiLivrosEmprestados = false;
-        for (Livro livro : usuario.getLivrosEmprestados()) {
-            if (!livro.isDisponivel()) {
-                possuiLivrosEmprestados = true;
-                break;
-            }
-        }
-    
-        if (!possuiLivrosEmprestados) {
-            usuarios.remove(usuario);
-            System.out.println("Usuário removido da biblioteca: " + usuario.getNome());
-        } else {
-            System.out.println("Não é possível remover o usuário, pois ele tem livros emprestados.");
-        }
-    }
 }
+
+

@@ -1,3 +1,6 @@
+package entidades;
+
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -6,11 +9,7 @@ public class Usuario {
     private int id;
     private List<Livro> livrosEmprestados;
 
-    public Usuario(String nome, int id) {
-        this.nome = nome;
-        this.id = id;
-        this.livrosEmprestados = new ArrayList<>();
-    }
+    
 
     public String getNome() {
         return nome;
@@ -35,14 +34,10 @@ public class Usuario {
     public void setLivrosEmprestados(List<Livro> livrosEmprestados) {
         this.livrosEmprestados = livrosEmprestados;
     }
-
-    public void emprestarLivro(Livro livro) {
-        if (livro.isDisponivel()) {
-            livro.emprestar();
-            getLivrosEmprestados().add(livro);
-        } else {
-            System.out.println("O livro não está disponível para empréstimo.");
-        }
+    public Usuario(){}
+    public Usuario(String nome, int id) {
+        this.nome = nome;
+        this.id = id;
+        this.livrosEmprestados = new ArrayList<>();
     }
 }
-
