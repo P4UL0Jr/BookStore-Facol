@@ -85,7 +85,6 @@ public class Main {
 
         Thread.sleep(3000);
         principal();
-
     }
 
     public static void principal() throws InterruptedException{
