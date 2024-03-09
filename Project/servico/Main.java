@@ -4,11 +4,12 @@ import java.util.Scanner;
 import repositorio.BibliotecaRepositorio;
 import entidades.Livro;
 import entidades.Biblioteca;
+import tratamentoDeErros.excecoesMain;
 
 public class Main {
     static Scanner scanner = new Scanner(System.in);
     static BibliotecaRepositorio biblioteca = new BibliotecaRepositorio();
-    
+
 
     //limpar a linha de comando (apenas para manter a organização)
     public static void limpeza(){
@@ -140,14 +141,12 @@ public class Main {
                         System.exit(0);
                     default:
                         scanner.nextLine();
-                        System.out.println("Opção inválida. Tente novamente.");
-                        Thread.sleep(2000);
+                        excecoesMain.erroMenuBiblioteca();
                         principal();
                 }
             } catch (Exception e) {
                 scanner.nextLine();
-                System.out.println("Opção inválida. Tente novamente.");
-                Thread.sleep(2000);
+                excecoesMain.erroMenuBiblioteca();
                 principal();
                 
             }   
@@ -164,7 +163,8 @@ public class Main {
             System.out.println("3. Emprestar livro");
             System.out.println("4. Ver livros");
             System.out.println("5. Devolver livro");
-            System.out.println("6. Retornar ao menu inicial");
+            System.out.println("6. Atualizar livro");
+            System.out.println("7. Retornar ao menu inicial");
             System.out.print("--> ");
             
             try {
@@ -197,18 +197,20 @@ public class Main {
                         principalLivros();
                         break;
                     case 6:
+                        biblioteca.atualizarlivro(biblioteca, scanner);
+                        principalLivros();
+                        break;
+                    case 7:
                         principal();
                     default:
                         scanner.nextLine();
-                        System.out.println("Opção inválida. Tente novamente.");
-                        Thread.sleep(2000);
+                        excecoesMain.erroMenuBiblioteca();
                         principalLivros();
                 }
 
             } catch (Exception e) {
                 scanner.nextLine();
-                System.out.println("Opção inválida. Tente novamente.");
-                Thread.sleep(2000);
+                excecoesMain.erroMenuBiblioteca();
                 principalLivros();
             }
 
@@ -239,13 +241,14 @@ public class Main {
             }
         } catch (Exception e) {
             scanner.nextLine();
-            System.out.println("Valor inválido");
-            Thread.sleep(2000);
+            excecoesMain.erroValorLivro();
+
             principalLivros();
         }
 
         
     }
+
 
     private static void removerLivro(Biblioteca biblioteca, Scanner scanner) throws InterruptedException {
         try {
@@ -269,8 +272,7 @@ public class Main {
             }
         } catch (Exception e) {
             scanner.nextLine();
-            System.out.println("Valor inválido");
-            Thread.sleep(2000);
+            excecoesMain.erroValorLivro();
             principalLivros();
         }
     }
@@ -307,8 +309,7 @@ public class Main {
             }
         } catch (Exception e) {
             scanner.nextLine();
-            System.out.println("Valor inválido");
-            Thread.sleep(2000);
+            excecoesMain.erroValorLivro();
             principalLivros();
         }
     }
@@ -335,8 +336,7 @@ public class Main {
             }
         } catch (Exception e) {
             scanner.nextLine();
-            System.out.println("Valor inválido");
-            Thread.sleep(2000);
+            excecoesMain.erroValorLivro();
             principalLivros();
         }
     }
@@ -356,8 +356,7 @@ public class Main {
             biblioteca.registrarUsuario(new UsuarioServico(nome, id));
         } catch (Exception e) {
             scanner.nextLine();
-            System.out.println("Valor inválido");
-            Thread.sleep(2000);
+            excecoesMain.erroValorLivro();
             principal();
         }
     }
@@ -382,8 +381,7 @@ public class Main {
                 System.out.println("Usuário não encontrado na biblioteca.");
             }
         } catch (Exception e) {
-            System.out.println("Valor inválido");
-            Thread.sleep(2000);
+            excecoesMain.erroValorLivro();
             principal();
 
         }  

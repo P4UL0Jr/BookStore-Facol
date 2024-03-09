@@ -33,6 +33,10 @@ public abstract class Biblioteca {
         
     }
 
+    public void atualizarlivro (Livro livro){
+        
+    }
+
     public void removerLivro(Livro livro) {
     
     }
@@ -40,7 +44,6 @@ public abstract class Biblioteca {
     public void registrarUsuario(UsuarioServico usuario) throws InterruptedException {
         
     }
-
     
     
     public void removerUsuario(UsuarioServico usuario) {
